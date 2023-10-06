@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add to Cart</title>
+    <style>
+      body{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      .navbar_container{
+        /* border: 1px solid red; */
+        display: flex;
+        justify-content: end;
+        background-color: blue;
+      }
+
+      ul{
+        /* border: 1px solid blue; */
+        list-style: none;
+        display: flex;
+        color: white;
+        font-size: 20px;
+      }
+      li{
+        margin: 10px;
+        cursor: pointer;
+      }
+
+      #cart {
+        color: blueviolet;
+      }
+      button {
+        background-color: yellowgreen;
+        padding: 6px 4px;
+        cursor: pointer;
+        font-size: 17px;
+        color: whitesmoke;
+        border-radius: 10px;
+      }
+
+      .total_value_container{
+        /* border: 1px solid; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar_container">
+      <ul class="nav_bar_ul">
+        <li>Home</li>
+        <li>Contact us</li>
+        <li>Sign up</li>
+        <li>Cart  <span id="add_to_cart"></span</li>
+      </ul>
+    </div>
+    <div class="total_value_container">
+      <div>
+        <h2>Total <span id="cartTotal"></span> </h2>
+      </div>
+      <div>
+        <button onclick="increament()" id="increament">Increament+</button>
+        <button onclick="decreament()" id="decreament">Decreament-</button>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  let cartCount = 0;
+
+  function totalValueDOM(){
+    let cartTotal = document.getElementById("cartTotal");
+    cartTotal.innerText=cartCount;
+  }
+
+  function updateDOM() {
+    let cartSpan = document.getElementById("add_to_cart");
+    if (cartCount === 1 || cartCount === 0) {
+      cartSpan.innerText = `${cartCount} Item`;
+    } else {
+      cartSpan.innerText = `${cartCount} Items`;
+    }
+  }
+
+  function increament() {
+    cartCount++;
+    updateDOM();
+    totalValueDOM()
+  }
+
+  function decreament() {
+    if (cartCount > 0) {
+      cartCount--;
+      updateDOM();
+      totalValueDOM()
+    }
+  }
+</script>
